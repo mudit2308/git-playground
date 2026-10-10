@@ -1,0 +1,11 @@
+{
+  "name": "git-playground",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Learn git by playing: type real commands and watch the commit graph change live.",
+  "type": "module",
+  "scripts": {
+    "start": "npx --yes serve .",
+    "test": "node --test"
+  }
+}

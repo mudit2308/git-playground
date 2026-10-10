@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Git Playground: learn git by playing</title>
+    <meta name="description" content="Type real git commands and watch the commit graph change live. Learn branches, merge, rebase, reset and cherry-pick with guided lessons." />
+    <meta property="og:title" content="Git Playground" />
+    <meta property="og:description" content="Learn git by playing. Type commands, watch the graph change." />
+    <meta name="theme-color" content="#f6f5f1" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23f05032'/><circle cx='32' cy='30' r='10' fill='white'/><circle cx='32' cy='72' r='10' fill='white'/><circle cx='70' cy='48' r='10' fill='white'/><path d='M32 40v22M32 52c0-6 8-6 30-6' stroke='white' stroke-width='7' fill='none'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="src/app.js"></script>
+  </head>
+  <body>
+    <header class="nav">
+      <a class="logo" href="./">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="7" cy="6" r="2.6" /><circle cx="7" cy="18" r="2.6" /><circle cx="17" cy="11" r="2.6" /><path d="M7 8.6v6.8M7 13c0-2 2-2.2 7.4-2" /></svg>
+        git<span>/</span>playground
+      </a>
+      <nav class="modes" role="tablist" aria-label="Mode">
+        <button type="button" role="tab" data-mode="lessons" aria-selected="true">Lessons</button>
+        <button type="button" role="tab" data-mode="sandbox" aria-selected="false">Sandbox</button>
+      </nav>
+      <a class="nav-link" href="https://github.com/mudit2308/git-playground" target="_blank" rel="noopener">GitHub ↗</a>
+    </header>
+
+    <section class="hero">
+      <h1>Learn git by <span class="scribble">playing</span>.</h1>
+      <p>Type real git commands and watch your history change, live. Branches, merges, rebases: no more guessing what just happened.</p>
+    </section>
+
+    <main class="workspace">
+      <section class="board">
+        <div class="board-bar">
+          <div class="legend" aria-hidden="true">
+            <span><i class="dot"></i>commit</span>
+            <span><i class="dot merge"></i>merge</span>
+            <span><i class="dot copy"></i>copy</span>
+            <span><i class="dot faded"></i>lost</span>
+          </div>
+          <div class="board-actions">
+            <button type="button" class="tool" id="undo" title="Undo last command (Ctrl+Z)">↶ Undo</button>
+            <button type="button" class="tool" id="restart" title="Start this over">⟲ Reset</button>
+            <button type="button" class="tool" id="share" title="Copy a link to this history">🔗 Share</button>
+          </div>
+        </div>
+        <div class="graph-scroll" id="graph-scroll">
+          <svg id="graph" role="img" aria-label="Commit graph"></svg>
+        </div>
+        <div class="explain" id="explain" aria-live="polite">
+          <span class="explain-icon">💡</span>
+          <p id="explain-text">Type a command in the terminal. After each one, this box explains in plain English what git just did.</p>
+        </div>
+      </section>
+
+      <aside class="side">
+        <section class="panel lesson" id="lesson-panel">
+          <div class="lesson-nav" id="lesson-nav" aria-label="Lessons"></div>
+          <p class="lesson-kicker" id="lesson-kicker"></p>
+          <h2 id="lesson-title"></h2>
+          <p class="lesson-intro" id="lesson-intro"></p>
+          <ol class="goals" id="goals"></ol>
+          <div class="lesson-help">
+            <button type="button" class="link" id="hint-btn">Need a hint?</button>
+            <p class="hint" id="hint" hidden></p>
+          </div>
+          <div class="done" id="done" hidden>
+            <strong>🎉 Lesson complete!</strong>
+            <button type="button" class="primary" id="next-lesson">Next lesson →</button>
+          </div>
+        </section>
+
+        <section class="panel sandbox" id="sandbox-panel" hidden>
+          <h2>Sandbox</h2>
+          <p>Free play. Try anything: create branches, merge, rebase, reset. Use <b>Undo</b> if you break something, and <b>Share</b> to send someone your history.</p>
+          <div class="cheats" id="cheats"></div>
+        </section>
+
+        <section class="terminal" aria-label="Terminal">
+          <div class="term-bar"><i></i><i></i><i></i><span>terminal</span></div>
+          <div class="term-out" id="term-out" role="log" aria-live="polite"></div>
+          <div class="chips" id="chips"></div>
+          <form class="term-in" id="term-form" autocomplete="off">
+            <label for="cmd" class="prompt" id="prompt">(main) $</label>
+            <input id="cmd" spellcheck="false" autocapitalize="off" placeholder='git commit -m "first commit"' />
+          </form>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="foot">
+      Built by <a href="https://github.com/mudit2308" target="_blank" rel="noopener">Mudit Pathak</a> · A simulator for learning: commits here have no files, just history.
+    </footer>
+  </body>
+</html>
